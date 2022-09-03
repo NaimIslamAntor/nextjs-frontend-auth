@@ -4,6 +4,9 @@ import { useLocalAuth, useAuth } from '../../hooks/useAuth'
 import axios from 'axios'
 
 
+import { toast } from 'react-toastify'
+
+
 const Login = () => {
 
 
@@ -12,7 +15,7 @@ const Login = () => {
 
 
   const localAuth = useLocalAuth()
-  const { auth, setAuth } = useAuth()
+  const { setAuth } = useAuth()
 
   const router = useRouter()
 
@@ -47,7 +50,23 @@ const Login = () => {
       setAuth(data)
 
     } catch (error) {
-      console.log(error.response)
+      // console.log(error.response)
+
+      const { errors } = error.response.data
+
+      errors.forEach(err => {
+
+        toast.warn(err, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          })
+
+        })
     }
 
   }
@@ -55,6 +74,7 @@ const Login = () => {
 
   return(
     <section className="h-screen">
+
     <div className="container px-6 py-12 h-full">
       <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
         <div className="md:w-8/12 lg:w-6/12 mb-12 md:mb-0">
@@ -69,7 +89,7 @@ const Login = () => {
             {/* <!-- Email input --> */}
             <div className="mb-6">
               <input
-                type="text"
+                type="email"
                 className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="Email address"
                 onChange={e => setEmail(e.target.value)}

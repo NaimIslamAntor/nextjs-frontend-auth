@@ -5,6 +5,10 @@ import { useRouter } from 'next/router'
 
 import { useLocalAuth, useAuth } from '../../hooks/useAuth'
 
+
+import { toast } from 'react-toastify'
+
+
 const Signup = () => {
 
 
@@ -46,7 +50,7 @@ const Signup = () => {
       confirmPassword,
     }
 
-    console.log(process.env.NEXT_PUBLIC_API_ORIGIN)
+    // console.log(process.env.NEXT_PUBLIC_API_ORIGIN)
 
     try {
       const request = await axios.post(`${process.env.NEXT_PUBLIC_API_ORIGIN}/api/auth/register`, creds)
@@ -57,14 +61,37 @@ const Signup = () => {
       setAuth(data)
 
     } catch (error) {
-      console.log(error.response)
+      // console.log(error.response)
+
+      const { errors } = error.response.data
+
+      errors.forEach(err => {
+
+        toast.warn(err, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          })
+
+      })
     }
   }
 
 
+  const redirectForgotPage = e => {
+    e.preventDefault()
+
+    router.push('/auth/forgot-password')
+  }
+
 
   return <div className="min-h-screen flex items-center justify-center flex-col lg:flex-row bg-blue-100 py-12 px-4 sm:px-6 lg:px-8">
  
+
  <img  style={{border:"20px", margin:"50px",float:"left", width:"500px",height: "500px"}} 
  className="object-cover" src="https://images.unsplash.com/photo-1464746133101-a2c3f88e0dd9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=htmlFormat&fit=crop&w=1327&q=80"/>
   <hr/>
@@ -152,6 +179,7 @@ const Signup = () => {
          Signup
        </button>
      </div>
+     <h1 className="text-center text-xl">Forgot password <button onClick={redirectForgotPage} className="btn-primary">Click here</button></h1>
    </form>
  </div>
 </div>

@@ -97,7 +97,7 @@ const Navbar = () => {
             <a className="text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer" onClick={logout}>
             Logout
             </a>
-            <Link href={`/auth/profile/${auth._id}`}>
+            <Link href='/auth/profile'>
             <a className="text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">
             {auth.fName} {auth.lName}
             </a>

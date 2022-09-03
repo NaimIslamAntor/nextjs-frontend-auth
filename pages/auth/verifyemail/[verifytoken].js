@@ -4,13 +4,15 @@ import { useLocalAuth, useAuth } from '../../../hooks/useAuth'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 
+import { toast } from 'react-toastify'
+
 
 const VerifyToken = () => {
 
 
     
   const localAuth = useLocalAuth()
-  const { auth, setAuth } = useAuth()
+  const { setAuth } = useAuth()
 
   const router = useRouter()
   const { verifytoken } = router.query
@@ -25,7 +27,10 @@ const VerifyToken = () => {
         // console.log('running...')
 
         if (!localAuth().isVerified) {
+
+          if(verifytoken){
             verifyRequest()
+          }
         }
     
       }, [localAuth])
@@ -64,9 +69,45 @@ const VerifyToken = () => {
             localStorage.setItem('auth', JSON.stringify(authCreds))
             setAuth(localAuth())
 
-            alert('You are now a verified user')
+            
+            toast('You are now a verified user', {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              })
+
+
+                setTimeout(() => {
+      
+                  router.push('/')
+      
+                }, 2000);
+
+
+
         } catch (error) {
-            console.log(error.message)
+            // console.log(error.message)
+
+            const { errors } = error.response.data
+
+            errors.forEach(err => {
+      
+              toast.warn(err, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                })
+      
+              })
+
         }
     }
 

@@ -1,11 +1,14 @@
 import useResendVerifyMail from "../hooks/useResendVerifyMail"
 
+
+
 const NotVerified = () => {
     
     const sendVerifyMail = useResendVerifyMail()
 
   return (
     <div className="py-20 grif place-items-center">
+
               <div className="">
                  <h1 className="text-center text-3xl">
                   You are one step ahead from being a verified user

@@ -3,6 +3,12 @@ import axios from 'axios'
 
 import { useAuth } from './useAuth'
 
+
+import { toast } from 'react-toastify'
+
+
+
+
 const useResendVerifyMail = () => {
 
     const { auth } = useAuth()
@@ -21,9 +27,55 @@ const useResendVerifyMail = () => {
     
         try {
             const request = await axios.post(`${process.env.NEXT_PUBLIC_API_ORIGIN}/api/auth/resendverificationemail`, creds, config)
-            console.log(request)
+            const  { message } = request.data
+
+            toast(message, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                })
+
+
         } catch (error) {
-            console.log(error)
+            // console.log(error)
+
+        const { status, data } = error.response
+
+        if (status === 429) {
+          
+            toast.warn('You have to wait 5 mins to get a new email', {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              })
+  
+              return
+    
+          }
+  
+          data.errors.forEach(err => {
+    
+            toast.warn(err, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              })
+    
+            })
+  
+
         }
     }
         

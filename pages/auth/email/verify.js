@@ -5,6 +5,12 @@ import { useLocalAuth, useAuth } from '../../../hooks/useAuth'
 import NotVerified from '../../../components/NotVerified'
 import Verified from '../../../components/Verified'
 
+
+import { Toast } from 'react-toastify'
+
+
+
+
 const Verify = () => {
 
   const localAuth = useLocalAuth()
