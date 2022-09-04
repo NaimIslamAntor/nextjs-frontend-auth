@@ -70,8 +70,19 @@ const Navbar = () => {
       </div>
       <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
         <div className="flex-shrink-0 flex items-center">
-          <img className="block lg:hidden h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow"/>
-          <img className="hidden lg:block h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg" alt="Workflow"/>
+
+        <Link href="/">
+            <a>
+            <img className="block lg:hidden h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow"/>
+            </a>
+        </Link>
+
+        <Link href="/">
+            <a>
+            <img className="hidden lg:block h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg" alt="Workflow"/>
+            </a>
+        </Link>
+
         </div>
         <div className="hidden sm:block sm:ml-6">
           <div className="flex space-x-4">
@@ -98,7 +109,7 @@ const Navbar = () => {
             Logout
             </a>
             <Link href='/auth/profile'>
-            <a className="text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">
+            <a className="text-white px-3 py-2 rounded-md text-sm font-medium">
             {auth.fName} {auth.lName}
             </a>
             </Link>
@@ -153,13 +164,36 @@ const Navbar = () => {
   <div className={`${mobileMenuShowHideState ? 'block' : 'hidden'} sm:hidden`} id="mobile-menu">
     <div className="px-2 pt-2 pb-3 space-y-1">
       {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-      <a href="#" className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Dashboard</a>
+   
+      {
+              !auth ? <>
+              <Link href="/auth/signup">
+            <a className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+            Signup
+            </a>
+            </Link>
 
-      <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Team</a>
 
-      <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a>
+            <Link href="/auth/login">
+            <a className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+            Login
+            </a>
+            </Link>
+            </>
+            :
+            <>
+            <a className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer" onClick={logout}>
+            Logout
+            </a>
+            <Link href='/auth/profile'>
+            <a className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+            {auth.fName} {auth.lName}
+            </a>
+            </Link>
+            </>
+            }
+           
 
-      <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Calendar</a>
     </div>
   </div>
 </nav>
