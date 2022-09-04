@@ -6,10 +6,6 @@ export default function Home() {
      <Head>
       <title>Home || Free image download website</title>
      </Head>
-   
-
- 
-
      </div>
   )
 }

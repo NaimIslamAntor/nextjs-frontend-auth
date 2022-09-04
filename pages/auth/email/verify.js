@@ -8,7 +8,7 @@ import Verified from '../../../components/Verified'
 
 import { Toast } from 'react-toastify'
 
-
+import Head from 'next/head'
 
 
 const Verify = () => {
@@ -34,6 +34,9 @@ const Verify = () => {
 
   return (
     <>
+     <Head>
+      <title>Verify || Please verify your email</title>
+     </Head>
     {
       auth ? auth.isVerified ? <Verified/> : <NotVerified/> : ''
     }

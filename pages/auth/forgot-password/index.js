@@ -8,7 +8,7 @@ import { useLocalAuth } from '../../../hooks/useAuth'
 
 import { toast } from 'react-toastify'
 
-
+import Head from 'next/head'
 
 const ForgotPassword = () => {
 
@@ -144,6 +144,12 @@ const ForgotPassword = () => {
   return (
     <div>
           <div className="w-5/6 mx-auto py-12">
+
+          <Head>
+      <title>Forget password || You can reset easily</title>
+     </Head>
+
+
               {/* <!-- Email input --> */}
               <div className="mb-6">
               <input

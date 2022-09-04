@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import axios from 'axios'
 import { useLocalAuth, useAuth } from '../../../../hooks/useAuth'
 
+import Head from 'next/head'
 
 const userToken = ({ user }) => {
 

@@ -6,6 +6,7 @@ import axios from 'axios'
 
 import { toast } from 'react-toastify'
 
+import Head from 'next/head'
 
 const VerifyToken = () => {
 
@@ -113,7 +114,13 @@ const VerifyToken = () => {
 
       
   return (
-    <div>[verifytoken]</div>
+    <div>
+    
+    [verifytoken]
+    <Head>
+      <title>Email verify || Verify your email</title>
+     </Head>
+    </div>
   )
 }
 

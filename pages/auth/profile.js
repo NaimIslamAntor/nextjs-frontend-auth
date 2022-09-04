@@ -5,7 +5,7 @@ import { useLocalAuth, useAuth } from '../../hooks/useAuth'
 
 import PasswordChangeForm from '../../components/PasswordChangeForm'
 
-
+import Head from 'next/head'
 
 const Profile = () => {
 
@@ -40,6 +40,11 @@ const Profile = () => {
 
   return (
     <div className="mt-20">
+
+<Head>
+      <title>Profile || Your profile page</title>
+</Head>
+
     {
       auth ? <div className=''>
          <h1 className="text-center text-2xl">{auth.fName} {auth.lName}</h1>

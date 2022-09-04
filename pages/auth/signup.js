@@ -1,13 +1,12 @@
-import { useState, useContext, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
-// import { context } from '../../context/contextProvider'
 
 import { useLocalAuth, useAuth } from '../../hooks/useAuth'
-
-
 import { toast } from 'react-toastify'
 
+
+import Head from 'next/head'
 
 const Signup = () => {
 
@@ -91,6 +90,9 @@ const Signup = () => {
 
   return <div className="min-h-screen flex items-center justify-center flex-col lg:flex-row bg-blue-100 py-12 px-4 sm:px-6 lg:px-8">
  
+ <Head>
+      <title>Signup || Register to enjoy full features</title>
+  </Head>
 
  <img  style={{border:"20px", margin:"50px",float:"left", width:"500px",height: "500px"}} 
  className="object-cover" src="https://images.unsplash.com/photo-1464746133101-a2c3f88e0dd9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=htmlFormat&fit=crop&w=1327&q=80"/>

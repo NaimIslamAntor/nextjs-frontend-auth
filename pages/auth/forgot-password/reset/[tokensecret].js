@@ -7,7 +7,7 @@ import { useLocalAuth } from '../../../../hooks/useAuth'
 
 
 import { toast } from 'react-toastify'
-
+import Head from 'next/head'
 
 
 
@@ -95,6 +95,10 @@ const TokenSecret = () => {
           <div className="w-5/6 mx-auto py-12">
 
               {/* <!-- password input --> */}
+
+      <Head>
+      <title>Reset password || Reset your password</title>
+     </Head>
 
               <div className="mb-6">
               <input
